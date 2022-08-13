@@ -1,54 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include __DIR__ . '/vendor/autoload.php';
+use App\QuestionList;
+use App\Test;
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .flex-row{
-            display: flex;
-        }
-        .flex-row input{
-            font-size: 50px;
-        }
-        button{
-            font-size: 20px;
-        }
-    </style>
-    <title>Algo</title>
-</head>
+$questionList = new QuestionList();
 
-<body>
-    <form action="#" method="POST">
-        <div class="flex-row">
-            <input type="number" name="numQuestion" placeholder="Nhap so cau hoi can hien thi ">
-            <button name="question">Hien thi 1 cau hoi</button>
-        </div>
-        <button name="questions">Hien thi tat ca cau hoi</button>
-    </form>
+// Get All Questions
+$getAllQuestions  = $questionList -> getAllList();
+echo "<pre>";
+print_r($getAllQuestions);
 
-    <?php
-include_once('./parsedown/Parsedown.php');
-require("Question.php");
-require("QuestionList.php");
-$question = $_POST['question'];
-$questions = $_POST['questions'];
-$numQuestion = $_POST['numQuestion'];
-if(isset($questions)){
-    $questionList = new QuestionList();
-    $questionList->all();
-}
-if(isset($question)){
-    if($numQuestion > 0 && $numQuestion <= 155){
-        $getquestion = new Question();
-        $getquestion->getQuestion($numQuestion);
-    }
-    else{
-        echo "Khong co cau hoi nay";
-    }
-}
+// Get All Answers
+$getAllQuestions  = $questionList -> getAllAnswers();
+echo "<pre>";
+print_r($getAllQuestions);
+
+// Get Question by number
+// $numQuestions = 1;
+// $getQuestion = $questionList -> getQuestion($numQuestions);
+// echo "<pre>";
+// print_r($getQuestion);
 ?>
-</body>
-
-</html>
