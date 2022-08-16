@@ -3,7 +3,7 @@
         'name' => 'minhhn/algo',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '899ebd3bba90e8b86d4a35be97d4ad5b0609e86e',
+        'reference' => '975636a42ba17036efdd3ae1d91fed13782675aa',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'minhhn/algo' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '899ebd3bba90e8b86d4a35be97d4ad5b0609e86e',
+            'reference' => '975636a42ba17036efdd3ae1d91fed13782675aa',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

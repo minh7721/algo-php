@@ -3,34 +3,32 @@ include __DIR__ . '/vendor/autoload.php';
 use App\QuestionList;
 use App\Test;
 
+$pathQuestion = "Question.md";
+
 $questionList = new QuestionList();
 
+$parse = $questionList->parse($pathQuestion);
 // Get All Questions
-$getAllQuestions  = $questionList -> getAllList();
-echo "<pre>";
-print_r($getAllQuestions);
-
-// Get All Answers
-// $getAllQuestions  = $questionList -> getAllAnswers();
-// echo "<pre>";
-// print_r($getAllQuestions);
+//$getAllQuestions  = $parse -> getAllList();
+//echo "<pre>";
+//print_r($getAllQuestions);
 
 // Get Question by number
 // $numQuestions = 1;
-// $getQuestion = $questionList -> getQuestion($numQuestions);
+// $getQuestion = $parse->getQuestion($numQuestions - 1);
 // echo "<pre>";
 // print_r($getQuestion);
 
 // Add question
-// $newQuestion = "Cau hoi moi";
+// $newContent = "Cau hoi moi";
 // $newAnswer = "Dap an F la dap an dung";
-// $newArr = $questionList -> addQuestion($newQuestion, $newAnswer);
+// $newArr = $parse -> addQuestion($newContent, $newAnswer);
 // echo "<pre>";
 // print_r($newArr);
 
 // Delete Question
-// $numQuestion = 1;
-// $newArr = $questionList -> delQuestion($numQuestion);
-// echo "<pre>";
-// print_r($newArr);
+ $numQuestion = 2;
+ $newArr = $parse -> delQuestion($numQuestion );
+ echo "<pre>";
+ print_r($newArr);
 ?>

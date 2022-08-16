@@ -1,16 +1,16 @@
 <?php
 namespace App;
 class Question{
-    public $question = '';
+    public string $content;
+    public string $answer;
 
-    function getQuestion()
+    public function __construct(string $content, string $answer)
     {
-        return $this->question;
+        $this->content = $content;
+        $this->answer = $answer;
     }
-    function setQuestion($newQuestion)
-    {
-        $this->question = $newQuestion;
-    }
+
+
 }
 
 ?>

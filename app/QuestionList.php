@@ -1,59 +1,46 @@
 <?php
 namespace App;
-
+use App\Question;
 class QuestionList{
-    public array $listQuestions = [];
-    const pathQuestion = "Question.md";
-
-    public function __construct($listQuestions = [])
+    protected array $listQuestions = [];
+    public function __construct($listQuestions = [], $listAnswers = [])
     {
         $this->listQuestions = $listQuestions;
+        $this->listAnswers = $listAnswers;
     }
 
     public function parse($path){
         $contents = file_get_contents($path);
-        $Questions = explode("######", $contents);
-        array_push($this -> listQuestions, $Questions);
-        return $Questions;
+        $questions = explode("######", $contents);
+        array_shift($questions);
+        foreach($questions as $question){
+            $content = explode("####", $question);
+            $this->listQuestions[] = new Question($content[0], $content[1]);
+        }
+        return $this;
     }
     
     public function getQuestion($numQuestion){
-        $this -> parse(self::pathQuestion);
-        if(count($this->listQuestions[0]) > 0 && $numQuestion > 0 && $numQuestion < count($this->listQuestions[0])) {
-            return $this->listQuestions[0][$numQuestion];
+        if(count($this->listQuestions) > 0 && $numQuestion >= 0 && $numQuestion < count($this->listQuestions)) {
+            return $this->listQuestions[$numQuestion];
         } else {
             return "Khong co cau hoi nay";
         }
     }
 
-    public function answers($path){
-        $contents = file_get_contents($path);
-        $Answers = explode("####", $contents);
-        return $Answers;
-    }
-
-    public function getAllAnswers(){
-        $arrAnswers = [];
-        $Answers = $this -> answers(self::pathQuestion);
-        for($i = 0; $i < count($Answers); $i = $i + 2){
-            array_push($arrAnswers, $Answers[$i]);
-        }
-        return $arrAnswers;
-    }
     public function getAllList(){
-        return $this -> parse(self::pathQuestion);
+        return $this -> listQuestions;
     }
 
     public function addQuestion($question, $answer){
-        $this -> parse(self::pathQuestion);
-        array_push($this -> listQuestions[0], $question."\n \n \n".$answer);
+        $this -> listQuestions;
+        array_push($this -> listQuestions, $question."\n \n \n".$answer);
         return $this -> listQuestions;
     }
 
     public function delQuestion($numQuestion){
-        $newArrQuestion = [];
-        $questions = $this -> parse(self::pathQuestion);
-        if(count($this->listQuestions[0]) > 0 && $numQuestion > 0 && $numQuestion < count($this->listQuestions[0])) {
+        $questions = $this -> listQuestions;
+        if(count($this->listQuestions) > 0 && $numQuestion >= 0 && $numQuestion < count($this->listQuestions)) {
             $newArrQuestion =array_splice($questions, $numQuestion);
             return $newArrQuestion;
         } else {
