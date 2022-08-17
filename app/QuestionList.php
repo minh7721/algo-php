@@ -1,12 +1,10 @@
 <?php
 namespace App;
-use App\Question;
 class QuestionList{
-    protected array $listQuestions = [];
-    public function __construct($listQuestions = [], $listAnswers = [])
+    protected array $items = [];
+    public function __construct($listQuestions = [])
     {
-        $this->listQuestions = $listQuestions;
-        $this->listAnswers = $listAnswers;
+        $this->items = $listQuestions;
     }
 
     public function parse($path){
@@ -15,36 +13,44 @@ class QuestionList{
         array_shift($questions);
         foreach($questions as $question){
             $content = explode("####", $question);
-            $this->listQuestions[] = new Question($content[0], $content[1]);
+            $this->items[] = new Question($content[0], $content[1]);
         }
         return $this;
     }
     
-    public function getQuestion($numQuestion){
-        if(count($this->listQuestions) > 0 && $numQuestion >= 0 && $numQuestion < count($this->listQuestions)) {
-            return $this->listQuestions[$numQuestion];
+    public function getQuestion(int | array $indexes ){
+//        if(is_int($indexes)){
+//            return $this->items[$indexes] ?: throw new Exception("No have question");;
+//        }
+//        elseif(is_array($indexes)){
+//            foreach ($indexes as $index){
+//                yield $this->items[$indexes] ?: throw new Exception("No have question");;
+//            }
+//        }
+//        else{
+//            return null;
+//        }
+        return $this->items[$indexes] ?: throw new Exception("No have question");;
+
+    }
+
+    public function all(){
+        return $this -> items;
+    }
+
+    public function add($question){
+        $this -> items;
+        array_push($this -> items, $question);
+        return $this -> items;
+    }
+
+    public function delete($numQuestion){
+        $questions = $this->items;
+        if(count($this->items) > 0 && $numQuestion >= 0 && $numQuestion < count($this->items)) {
+            $questions =array_splice($questions, $numQuestion);
+            return $questions;
         } else {
-            return "Khong co cau hoi nay";
-        }
-    }
-
-    public function getAllList(){
-        return $this -> listQuestions;
-    }
-
-    public function addQuestion($question, $answer){
-        $this -> listQuestions;
-        array_push($this -> listQuestions, $question."\n \n \n".$answer);
-        return $this -> listQuestions;
-    }
-
-    public function delQuestion($numQuestion){
-        $questions = $this -> listQuestions;
-        if(count($this->listQuestions) > 0 && $numQuestion >= 0 && $numQuestion < count($this->listQuestions)) {
-            $newArrQuestion =array_splice($questions, $numQuestion);
-            return $newArrQuestion;
-        } else {
-            return "Khong co cau hoi nay";
+            return null;
         }
     }
 
