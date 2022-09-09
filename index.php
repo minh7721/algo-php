@@ -8,15 +8,15 @@ $questionList = new QuestionList();
 
 $parse = $questionList->parse($pathQuestion);
 // Get All Questions
-$getAllQuestions  = $parse -> all();
+//$getAllQuestions  = $parse -> all();
 echo "<pre>";
-print_r($getAllQuestions);
+//dd($getAllQuestions);
 
 // Get Question by number
-// $numQuestions = 1;
-// $getQuestion = $parse->getQuestion($numQuestions);
-// echo "<pre>";
-// print_r($getQuestion);
+ $numQuestions = 1;
+ $getQuestion = $parse->getQuestion($numQuestions);
+ echo "<pre>";
+ print_r($getQuestion);
 
 // Add question
 // $newContent = "###### This is a new Question

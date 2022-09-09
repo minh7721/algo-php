@@ -1,5 +1,7 @@
 <?php
 namespace App;
+use Exception;
+
 class QuestionList{
     protected array $items = [];
     public function __construct($listQuestions = [])
@@ -17,21 +19,24 @@ class QuestionList{
         }
         return $this;
     }
-    
-    public function getQuestion(int | array $indexes ){
-//        if(is_int($indexes)){
-//            return $this->items[$indexes] ?: throw new Exception("No have question");;
-//        }
-//        elseif(is_array($indexes)){
-//            foreach ($indexes as $index){
-//                yield $this->items[$indexes] ?: throw new Exception("No have question");;
-//            }
-//        }
-//        else{
-//            return null;
-//        }
-        return $this->items[$indexes] ?: throw new Exception("No have question");;
 
+    /**
+     * @throws Exception
+     */
+    public function getQuestion(int | array $indexes ){
+        $result = [];
+        if(is_int($indexes)){
+            $result = $this->items[$indexes];
+        }
+        else if(is_array($indexes)){
+            foreach ($indexes as $index){
+                $result[] = $this->items[$index];
+            }
+        }
+        else{
+            return null;
+        }
+        return $result ?: throw new Exception("No have question");
     }
 
     public function all(){

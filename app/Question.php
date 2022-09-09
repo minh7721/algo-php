@@ -9,8 +9,6 @@ class Question{
         $this->content = $content;
         $this->answer = $answer;
     }
-
-
 }
 
 ?>
